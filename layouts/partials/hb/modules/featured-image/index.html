@@ -1,7 +1,7 @@
 {{- $res := partialCached "hb/functions/page-featured-image" . . }}
 {{- if or $res .Params.images }}
   {{- $page := . }}
-  <div class="mb-3 text-center p-1 bg-body-secondary border">
+  <div class="mb-3 text-center">
     {{- $img := "" }}
     {{- with index .Params.images 0 }}
       {{- $img = . }}
@@ -22,7 +22,7 @@
       "Page" $page
       "Alt" $page.Title
       "Filename" $img
-      "ClassName" "hb-featured-img img-fluid"
+      "ClassName" "hb-featured-img img-fluid p-1 bg-body-secondary border"
       "LazyLoading" false
       "Original" true)
     }}
