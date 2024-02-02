@@ -1,30 +1,54 @@
 {{- $images := partial "_funcs/get-page-images" . }}
 {{- $page := . }}
 {{- with $images }}
-  <div class="hb-module p-0 text-center">
-    {{- $img := index . 0 }}
-    {{- $filename := "" }}
-    {{- with $img.Image }}
-      {{- $size := default "x640" site.Params.hb.featured_image.size }}
-      {{- $sizes := split $size "x" }}
-      {{- $query := slice }}
-      {{- with index $sizes 0 }}
-        {{- $query = $query | append "width" . }}
+  <div class="hb-module p-0 text-center carousel slide" id="hb-featured-images">
+    <div class="carousel-indicators">
+      {{- range $i, $img := . }}
+        <button type="button"
+          data-bs-target="#hb-featured-images"
+          data-bs-slide-to="{{ $i }}"
+          class="{{ cond (eq $i 0) `active` `` }}"
+          aria-current="{{ cond (eq $i 0) `true` `false` }}"
+          aria-label="Featured image {{ $i }}">
+        </button>
       {{- end }}
-      {{- with index $sizes 1 }}
-        {{- $query = $query | append "height" . }}
+    </div>
+    <div class="carousel-inner bigger-pictures">
+      {{- range $i, $img := . }}
+        <div class="carousel-item{{ cond (eq 0 $i) ` active` `` }}">
+          {{- $filename := "" }}
+          {{- with $img.Image }}
+            {{- $size := default "x640" site.Params.hb.featured_image.size }}
+            {{- $sizes := split $size "x" }}
+            {{- $query := slice }}
+            {{- with index $sizes 0 }}
+              {{- $query = $query | append "width" . }}
+            {{- end }}
+            {{- with index $sizes 1 }}
+              {{- $query = $query | append "height" . }}
+            {{- end }}
+            {{- $filename = querify $query | printf "%s?%s" $img.Name }}
+          {{- else }}
+            {{- $filename = $img.Name }}
+          {{- end }}
+          {{ partial "images/image" (dict
+            "Page" $page
+            "Alt" $page.Title
+            "Filename" $filename
+            "ClassName" "hb-featured-img img-fluid p-1 bg-body-secondary border w-100"
+            "LazyLoading" false
+            "Original" true)
+          }}
+        </div>
       {{- end }}
-      {{- $filename = querify $query | printf "%s?%s" $img.Name }}
-    {{- else }}
-      {{- $filename = $img.Name }}
-    {{- end }}
-    {{ partial "images/image" (dict
-      "Page" $page
-      "Alt" $page.Title
-      "Filename" $filename
-      "ClassName" "hb-featured-img img-fluid p-1 bg-body-secondary border w-100"
-      "LazyLoading" false
-      "Original" true)
-    }}
+    </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#hb-featured-images" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#hb-featured-images" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
   </div>
 {{- end -}}
