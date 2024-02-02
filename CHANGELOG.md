@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0](https://github.com/hbstack/featured-image/compare/v0.1.2...v0.2.0) (2024-02-02)
+
+
+### Features ✨
+
+* allow using site image resources ([#61](https://github.com/hbstack/featured-image/issues/61)) ([50ac960](https://github.com/hbstack/featured-image/commit/50ac96046e229bd85aee97398c95af345337bb13))
+* show all images ([#63](https://github.com/hbstack/featured-image/issues/63)) ([7273c8e](https://github.com/hbstack/featured-image/commit/7273c8ea8235911baf775ea4c0599bdfc595c6fd))
+
 ## [0.1.2](https://github.com/hbstack/featured-image/compare/v0.1.1...v0.1.2) (2023-12-03)
 
 
