@@ -1,11 +1,10 @@
-{{- $res := partialCached "hb/functions/page-featured-image" . . }}
-{{- if or $res .Params.images }}
-  {{- $page := . }}
+{{- $images := partial "_funcs/get-page-images" . }}
+{{- $page := . }}
+{{- with $images }}
   <div class="hb-module p-0 text-center">
-    {{- $img := "" }}
-    {{- with index .Params.images 0 }}
-      {{- $img = . }}
-    {{- else }}
+    {{- $img := index . 0 }}
+    {{- $filename := "" }}
+    {{- with $img.Image }}
       {{- $size := default "x640" site.Params.hb.featured_image.size }}
       {{- $sizes := split $size "x" }}
       {{- $query := slice }}
@@ -15,13 +14,14 @@
       {{- with index $sizes 1 }}
         {{- $query = $query | append "height" . }}
       {{- end }}
-      {{- $img = replace $res.RelPermalink $page.RelPermalink "" }}
-      {{- $img = querify $query | printf "%s?%s" $img }}
+      {{- $filename = querify $query | printf "%s?%s" $img.Name }}
+    {{- else }}
+      {{- $filename = $img.Name }}
     {{- end }}
     {{ partial "images/image" (dict
       "Page" $page
       "Alt" $page.Title
-      "Filename" $img
+      "Filename" $filename
       "ClassName" "hb-featured-img img-fluid p-1 bg-body-secondary border w-100"
       "LazyLoading" false
       "Original" true)
