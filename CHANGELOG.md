@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/hbstack/featured-image/compare/v0.2.0...v0.2.1) (2024-02-13)
+
+
+### Bug Fixes 🐞
+
+* hide control buttons and indicators when there is less than 2 images ([#67](https://github.com/hbstack/featured-image/issues/67)) ([b340d47](https://github.com/hbstack/featured-image/commit/b340d475f6b43109cb945f28b23699be91ed5774))
+
 ## [0.2.0](https://github.com/hbstack/featured-image/compare/v0.1.2...v0.2.0) (2024-02-02)
 
 
