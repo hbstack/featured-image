@@ -2,17 +2,19 @@
 {{- $page := . }}
 {{- with $images }}
   <div class="hb-module p-0 text-center carousel slide" id="hb-featured-images">
-    <div class="carousel-indicators">
-      {{- range $i, $img := . }}
-        <button type="button"
-          data-bs-target="#hb-featured-images"
-          data-bs-slide-to="{{ $i }}"
-          class="{{ cond (eq $i 0) `active` `` }}"
-          aria-current="{{ cond (eq $i 0) `true` `false` }}"
-          aria-label="Featured image {{ $i }}">
-        </button>
-      {{- end }}
-    </div>
+    {{- if gt (len $images) 1 }}
+      <div class="carousel-indicators">
+        {{- range $i, $img := . }}
+          <button type="button"
+            data-bs-target="#hb-featured-images"
+            data-bs-slide-to="{{ $i }}"
+            class="{{ cond (eq $i 0) `active` `` }}"
+            aria-current="{{ cond (eq $i 0) `true` `false` }}"
+            aria-label="Featured image {{ $i }}">
+          </button>
+        {{- end }}
+      </div>
+    {{- end }}
     <div class="carousel-inner bigger-pictures">
       {{- range $i, $img := . }}
         <div class="carousel-item{{ cond (eq 0 $i) ` active` `` }}">
@@ -42,6 +44,7 @@
         </div>
       {{- end }}
     </div>
+    {{- if gt (len $images) 1 }}
       <button class="carousel-control-prev" type="button" data-bs-target="#hb-featured-images" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -50,5 +53,6 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
+    {{- end }}
   </div>
 {{- end -}}
