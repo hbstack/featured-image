@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.2](https://github.com/hbstack/featured-image/compare/v0.2.1...v0.2.2) (2024-10-14)
+
+
+### Styles 🎨
+
+* set fixed height for images ([88c8191](https://github.com/hbstack/featured-image/commit/88c8191034b465b7784a76a70d24f20f985acfc9))
+* set object-position as top for images ([88c8191](https://github.com/hbstack/featured-image/commit/88c8191034b465b7784a76a70d24f20f985acfc9))
+
 ## [0.2.1](https://github.com/hbstack/featured-image/compare/v0.2.0...v0.2.1) (2024-02-13)
 
 
